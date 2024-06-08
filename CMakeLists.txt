@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(GLFW3_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.4)
 
+find_package(OpenGL REQUIRED)
 find_package(GLFW3 REQUIRED)
 
 file(GLOB_RECURSE MIA_SOURCES
@@ -26,6 +27,7 @@ target_include_directories(mia
 
 target_link_libraries(mia
     PUBLIC
+        ${OPENGL_LIBRARIES}
         ${GLFW3_LIBRARIES}
 )
 
