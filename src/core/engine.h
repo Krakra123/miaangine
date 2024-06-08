@@ -3,7 +3,12 @@
 
 namespace mia
 {
-    void Init();
+    void InitEngine();
+    void MakeWindow(int w, int h);
+
+    void TerminateEngine();
+
+    bool IsRunning();
 }
 
 #endif

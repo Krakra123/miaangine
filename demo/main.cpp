@@ -5,7 +5,12 @@
 
 int main()
 {
-    mia::LogInfo("abs: %d", 1);
+    mia::InitEngine();
+    mia::MakeWindow(1280, 720);
 
-    mia::Init();
+    while (mia::IsRunning()) {
+        glfwPollEvents();
+    }
+
+    mia::TerminateEngine();
 }
