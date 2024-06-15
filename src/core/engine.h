@@ -1,6 +1,8 @@
 #ifndef _MIA_ENGINE_H
 #define _MIA_ENGINE_H
 
+#include <glfw3.h>
+
 namespace mia
 {
     void InitEngine();
@@ -9,6 +11,8 @@ namespace mia
     void TerminateEngine();
 
     bool IsRunning();
+
+    extern GLFWwindow* mainWindow;
 }
 
 #endif

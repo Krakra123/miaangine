@@ -5,7 +5,7 @@
 
 #include <debug/log-system.h>
 
-GLFWwindow* _engine_window;
+GLFWwindow* mia::mainWindow = nullptr;
 
 void mia::InitEngine()
 {
@@ -21,23 +21,23 @@ void mia::MakeWindow(int w, int h)
         throw std::logic_error("Window height and width must be positive");
     }
 
-    _engine_window = glfwCreateWindow(
+    mainWindow = glfwCreateWindow(
         w, h, 
         "", 
         NULL, 
         NULL
     );
 
-    glfwMakeContextCurrent(_engine_window);
+    glfwMakeContextCurrent(mainWindow);
 }
 
 void mia::TerminateEngine()
 {
-    glfwDestroyWindow(_engine_window);
+    glfwDestroyWindow(mainWindow);
     glfwTerminate();
 }
 
 bool mia::IsRunning()
 {
-    return !glfwWindowShouldClose(_engine_window);
+    return !glfwWindowShouldClose(mainWindow);
 }
