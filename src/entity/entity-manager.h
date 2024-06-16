@@ -9,6 +9,7 @@
 #include "entity.h"
 #include "debug/log-system.h"
 
+// TODO move error handling to the generic system
 namespace mia
 {
     template <class T>
@@ -51,7 +52,7 @@ namespace mia
             allComponentList[typeid(T)].remove(component);
         }
         else {
-            LogWarn("Component invalid.");
+            // LogWarn("Component invalid.");
         }
     }
 
@@ -69,7 +70,7 @@ namespace mia
             }
         }
         else {
-            LogWarn("Component T invalid.");
+            // LogWarn("Component T invalid.");
         }
     }
 
@@ -92,7 +93,7 @@ namespace mia
             }
         }
         else {
-            LogWarn("Component T invalid.");
+            // LogWarn("Component T invalid.");
         }
     }
 }
