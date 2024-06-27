@@ -1,5 +1,5 @@
-#ifndef _EVENT_MANAGER_H
-#define _EVENT_MANAGER_H
+#ifndef _MIA_EVENT_MANAGER_H
+#define _MIA_EVENT_MANAGER_H
 
 #include <string_view>
 #include <functional>

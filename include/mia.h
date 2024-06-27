@@ -3,6 +3,7 @@
 
 #include "core/engine.h"
 #include "debug/log-system.h"
-#include "core/input.h"
+#include "input/input-manager.h"
+
 
 #endif
