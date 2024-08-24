@@ -2,6 +2,8 @@
 
 namespace mia
 {
+    std::unordered_map<std::string_view, std::list<std::function<void()>>> EventManager::_eventsMap;
+
     void EventManager::RegisterEvent(const std::string_view& event, std::function<void()>&& callback)
     {
         _eventsMap[event].push_back(callback);

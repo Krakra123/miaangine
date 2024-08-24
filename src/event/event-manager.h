@@ -10,18 +10,19 @@
 
 namespace mia
 {
-    class EventManager : public Singleton<EventManager>
+    class EventManager
     {
-        friend class Singleton<EventManager>;
     public:
-        void RegisterEvent(const std::string_view& event, std::function<void()>&& callback);
-        // TODO Make unregister real
-        // void UnregisterEvent(const std::string_view& event, std::function<void()>& callback);
+        // Block contructor
+        EventManager() = delete;
 
-        void RaiseEvent(const std::string_view& event);
+        static void RegisterEvent(const std::string_view& event, std::function<void()>&& callback);
+        static void UnregisterEvent(const std::string_view& event, std::function<void()>& callback);
+
+        static void RaiseEvent(const std::string_view& event);
     
     private:
-        std::unordered_map<std::string_view, std::list<std::function<void()>>> _eventsMap;
+        static std::unordered_map<std::string_view, std::list<std::function<void()>>> _eventsMap;
     };
 }
 

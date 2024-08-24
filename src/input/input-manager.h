@@ -16,19 +16,22 @@ namespace mia
 
     };
 
-    class InputManager : public Singleton<InputManager>
+    class InputManager
     {
-        friend class Singleton<InputManager>;
     public:
-        void Init();
-        void Update();
+        // Block constructor
+        InputManager() = delete;
 
-        bool GetKey(int keycode);
-        bool GetKeyDown(int keycode);
-        bool GetKeyUp(int keycode);
+        // Public methods
+        static void Init();
+        static void Update();
 
-        std::shared_ptr<Event> MakeInputEvent(std::vector<int> keyCodeList);
-        void AddKeyInputToEvent(std::shared_ptr<Event>& event, int keycode);
+        static bool GetKey(int keycode);
+        static bool GetKeyDown(int keycode);
+        static bool GetKeyUp(int keycode);
+
+        static std::shared_ptr<Event> MakeInputEvent(std::vector<int> keyCodeList);
+        static void AddKeyInputToEvent(std::shared_ptr<Event>& event, int keycode);
     };
 }
 

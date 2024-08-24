@@ -17,7 +17,7 @@ void mia::InitEngine()
 void mia::MakeWindow(int w, int h)
 {
     if (w <= 0 || h <= 0) {
-        LogManager::Instance().LogError("Window height and width must be positive");
+        LogManager::LogError("Window height and width must be positive");
         throw std::logic_error("Window height and width must be positive");
     }
 

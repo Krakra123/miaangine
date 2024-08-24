@@ -7,16 +7,17 @@
 
 namespace mia
 {
-    class LogManager : public Singleton<LogManager> 
+    class LogManager 
     {
-        friend class Singleton<LogManager>;
     public:
-        void LogInfo(const char* format, ...);
-        void LogWarn(const char* format, ...);
-        void LogError(const char* format, ...);
+        // Block constructor
+        LogManager() = delete;
 
-    private:
-        void LogWithPrefix(const char* prefix, const char* format, va_list& args);
+        static void LogInfo(const char* format, ...);
+        static void LogWarn(const char* format, ...);
+        static void LogError(const char* format, ...);
+
+        static void LogWithPrefix(const char* prefix, const char* format, va_list& args);
     };
 }
 

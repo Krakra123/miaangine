@@ -39,7 +39,7 @@ int main()
     mia::InitEngine();
     mia::MakeWindow(1280, 720);
 
-    mia::InputManager::Instance().Init();
+    mia::InputManager::Init();
 
     ObjA a1(1);
     ObjB b0(0);
@@ -64,7 +64,7 @@ int main()
     });
 
     while (mia::IsRunning()) {
-        mia::InputManager::Instance().Update();
+        mia::InputManager::Update();
     }
 
     mia::TerminateEngine();
