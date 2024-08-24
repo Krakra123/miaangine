@@ -4,6 +4,6 @@
 #include "core/engine.h"
 #include "debug/log-system.h"
 #include "input/input-manager.h"
-
+#include "entity/entity-manager.h"
 
 #endif
