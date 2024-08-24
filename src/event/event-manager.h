@@ -10,6 +10,7 @@
 
 namespace mia
 {
+    // TODO: Rework this
     class EventManager
     {
     public:
@@ -17,7 +18,7 @@ namespace mia
         EventManager() = delete;
 
         static void RegisterEvent(const std::string_view& event, std::function<void()>&& callback);
-        static void UnregisterEvent(const std::string_view& event, std::function<void()>& callback);
+        // static void UnregisterEvent(const std::string_view& event, std::function<void()>& callback);
 
         static void RaiseEvent(const std::string_view& event);
     

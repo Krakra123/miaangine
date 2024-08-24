@@ -41,30 +41,13 @@ int main()
 
     mia::InputManager::Init();
 
-    ObjA a1(1);
-    ObjB b0(0);
-    ObjB b1(1);
-    {
-        ObjA a0(0);
-        ObjA a2(153);
-
-        mia::EntityManager::IterateEntities<ObjA>([](ObjA& t){
-            t.Notify("in scope");
-        });
-        mia::EntityManager::IterateEntities<ObjB>([](ObjB& t){
-            t.Notify("in scope");
-        });
-    }
-
-    mia::EntityManager::IterateEntities<ObjB>([](ObjB& t){
-        t.Notify("out scope");
-    });
-    mia::EntityManager::IterateEntities<ObjA>([](ObjA& t){
-        t.Notify("out scope");
-    });
 
     while (mia::IsRunning()) {
         mia::InputManager::Update();
+
+        if (mia::InputManager::GetKeyDown(GLFW_KEY_F)) printf("[");
+        if (mia::InputManager::GetKey(GLFW_KEY_F)) printf(".");
+        if (mia::InputManager::GetKeyUp(GLFW_KEY_F)) printf("]");
     }
 
     mia::TerminateEngine();

@@ -6,7 +6,10 @@
 #include <glfw3.h>
 
 #include "util/singleton.hpp"
-#include "event/event.h"
+
+#define MIA_KEY_PRESSED 0 
+#define MIA_KEY_HOLDING 1 
+#define MIA_KEY_RELEASED 2
 
 namespace mia
 {
@@ -29,9 +32,10 @@ namespace mia
         static bool GetKey(int keycode);
         static bool GetKeyDown(int keycode);
         static bool GetKeyUp(int keycode);
-
-        static std::shared_ptr<Event> MakeInputEvent(std::vector<int> keyCodeList);
-        static void AddKeyInputToEvent(std::shared_ptr<Event>& event, int keycode);
+    
+    public:
+        // Data 
+        static char KeysState[GLFW_KEY_LAST + 1];
     };
 }
 
