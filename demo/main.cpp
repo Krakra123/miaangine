@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "mia.h"
-#include <glfw3.h>
+#include <GLFW/glfw3.h>
 
 class ObjA : public mia::Entity
 {
@@ -40,7 +40,6 @@ int main()
     mia::MakeWindow(1280, 720);
 
     mia::InputManager::Init();
-
 
     while (mia::IsRunning()) {
         mia::InputManager::Update();

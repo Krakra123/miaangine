@@ -1,7 +1,6 @@
 #include "engine.h"
 
 #include <stdexcept>
-#include <glfw3.h>
 
 #include <debug/log-system.h>
 

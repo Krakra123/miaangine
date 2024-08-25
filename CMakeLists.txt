@@ -1,52 +1,67 @@
 cmake_minimum_required(VERSION 3.5.0)
+
+#########################################
 project(mia VERSION 0.1)
 
+#########################################
 set(CMAKE_CXX_STANDARD 20)
 
-set(GLFW3_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.4)
+OPTION(BUILD_SAMPLES "Builds samples" ON)
+OPTION(BUILD_TESTS "Builds tests" ON)
 
-find_package(OpenGL REQUIRED)
-find_package(GLFW3 REQUIRED)
+OPTION(OPENGL_DEBUG "Enables debug mode for OpenGL" ON)
+OPTION(OPENGL_NO_EXTENSIONS "Disables all extensions" OFF)
+OPTION(OPENGL_SHADER_OUTPUT "Outputs all source shaders for GLSLANG testing" OFF)
 
-file(GLOB_RECURSE MIA_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
-)
-file(GLOB_RECURSE MIA_HEADERS
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h 
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
-)
+#########################################
+file(GLOB_RECURSE MIA_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
-add_library(mia SHARED ${MIA_SOURCES} ${MIA_HEADERS})
+#########################################
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
-target_include_directories(mia 
-    PUBLIC
-        ${GLFW3_INCLUDE_DIRS}
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
-)
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/glew/build/cmake")
 
-target_link_libraries(mia
-    PUBLIC
-        ${OPENGL_LIBRARIES}
-        ${GLFW3_LIBRARIES}
-)
+target_compile_options(glfw PUBLIC -O3)
+target_compile_options(glew PUBLIC -O3)
 
-# =========== DEMO ===========
+#########################################
+add_library(mia SHARED ${MIA_SOURCES})
 
-add_executable(miademo ${CMAKE_CURRENT_SOURCE_DIR}/demo/main.cpp)
+#########################################
+target_include_directories(mia PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw/include)
+target_include_directories(mia PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/lib/glew/include)
 
-target_include_directories(miademo
-    PUBLIC
-        ${GLFW3_INCLUDE_DIRS}
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+target_include_directories(mia PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
 )
 
-target_link_libraries(miademo 
-    mia
-)
+#########################################
+target_link_libraries(mia PUBLIC glfw ${GLFW_LIBRARIES})
+target_link_libraries(mia PUBLIC glew ${GLEW_LIBRARIES})
 
-install(
-    TARGETS mia
+#########################################
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    target_compile_options(mia PRIVATE -O0 -ggdb -Wpedantic -Wextra -Wall -Wunused -Wno-attributes)
+    target_compile_definitions(mia PUBLIC MIA_DEBUG)
+endif()
+
+if (CMAKE_BUILD_TYPE STREQUAL "Release")
+    target_compile_options(mia PRIVATE -O3 -Wpedantic -Wextra -Wall -Wunused -Wno-attributes)
+endif()
+
+if (OPENGL_DEBUG)
+    target_compile_definitions(mia PUBLIC MIA_DEBUG)
+endif()
+
+#########################################
+install(TARGETS mia
     LIBRARY DESTINATION lib
     RUNTIME DESTINATION bin
 )
+
+#########################################
+add_subdirectory(demo)
