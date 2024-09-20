@@ -6,33 +6,23 @@ project(mia VERSION 0.1)
 #########################################
 set(CMAKE_CXX_STANDARD 20)
 
-OPTION(BUILD_SAMPLES "Builds samples" ON)
-OPTION(BUILD_TESTS "Builds tests" ON)
+#########################################
+set(GLFW_LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw)
 
-OPTION(OPENGL_DEBUG "Enables debug mode for OpenGL" ON)
-OPTION(OPENGL_NO_EXTENSIONS "Disables all extensions" OFF)
-OPTION(OPENGL_SHADER_OUTPUT "Outputs all source shaders for GLSLANG testing" OFF)
+#########################################
+find_package(OpenGL REQUIRED)
+find_package(GLFW3 REQUIRED PATHS ${GLFW_LIB_DIR})
 
 #########################################
 file(GLOB_RECURSE MIA_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
-#########################################
-set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw")
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/glew/build/cmake")
-
-target_compile_options(glfw PUBLIC -O3)
-target_compile_options(glew PUBLIC -O3)
+add_library(mia STATIC ${MIA_SOURCES})
 
 #########################################
-add_library(mia SHARED ${MIA_SOURCES})
+target_include_directories(mia PUBLIC ${OpenGL_INCLUDE_DIR})
+target_include_directories(mia PUBLIC ${GLFW3_INCLUDE_DIR})
 
-#########################################
-target_include_directories(mia PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw/include)
-target_include_directories(mia PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/lib/glew/include)
+message(STATUS ${GLFW3_INCLUDE_DIR})
 
 target_include_directories(mia PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -40,8 +30,8 @@ target_include_directories(mia PUBLIC
 )
 
 #########################################
-target_link_libraries(mia PUBLIC glfw ${GLFW_LIBRARIES})
-target_link_libraries(mia PUBLIC glew ${GLEW_LIBRARIES})
+target_link_libraries(mia PUBLIC ${OpenGL_LIBRARIES})
+target_link_libraries(mia PUBLIC ${GLFW3_LIBRARIES})
 
 #########################################
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
