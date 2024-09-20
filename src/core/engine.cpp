@@ -29,20 +29,10 @@ void mia::MakeWindow(int w, int h)
 
 	glfwMakeContextCurrent(mainWindow);
 
-        // GLFWwindow* wwww = glfwGetCurrentContext();
-        // int window_width, window_height;
-        // glfwGetFramebufferSize(wwww, &window_width, &window_height);
-        // printf(":: %d %d", window_width, window_height);
-
-    // glewExperimental = GL_TRUE;
-    // GLenum err = glewInit(); 
-
-    // if (GLEW_OK != err)
-    // {
-    //     /* Problem: glewInit failed, something is seriously wrong. */
-    //     fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
-
-    // }
+    glewExperimental = GL_TRUE;
+    if (glewInit() != GLEW_OK) {
+        LogManager::LogError("Failed to init Glew");\
+    }
 }
 
 void mia::TerminateEngine()
