@@ -7,11 +7,9 @@ project(mia VERSION 0.1)
 set(CMAKE_CXX_STANDARD 20)
 
 #########################################
-set(GLFW_LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw)
-
-#########################################
 find_package(OpenGL REQUIRED)
-find_package(GLFW3 REQUIRED PATHS ${GLFW_LIB_DIR})
+find_package(GLEW REQUIRED)
+find_package(GLFW3 REQUIRED PATHS ${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw)
 
 #########################################
 file(GLOB_RECURSE MIA_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
@@ -20,9 +18,8 @@ add_library(mia STATIC ${MIA_SOURCES})
 
 #########################################
 target_include_directories(mia PUBLIC ${OpenGL_INCLUDE_DIR})
+target_include_directories(mia PUBLIC ${GLEW_INCLUDE_DIR})
 target_include_directories(mia PUBLIC ${GLFW3_INCLUDE_DIR})
-
-message(STATUS ${GLFW3_INCLUDE_DIR})
 
 target_include_directories(mia PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -31,6 +28,7 @@ target_include_directories(mia PUBLIC
 
 #########################################
 target_link_libraries(mia PUBLIC ${OpenGL_LIBRARIES})
+target_link_libraries(mia PUBLIC ${GLEW_LIBRARIES})
 target_link_libraries(mia PUBLIC ${GLFW3_LIBRARIES})
 
 #########################################
