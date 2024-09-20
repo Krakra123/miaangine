@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <vector>
-#include <GLFW/glfw3.h>
+#include "core/libinclude.h"
 
 #include "util/singleton.hpp"
 

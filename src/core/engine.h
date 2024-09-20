@@ -1,7 +1,7 @@
 #ifndef _MIA_ENGINE_H
 #define _MIA_ENGINE_H
 
-#include <GLFW/glfw3.h>
+#include "core/libinclude.h"
 
 namespace mia
 {

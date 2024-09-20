@@ -9,7 +9,7 @@ GLFWwindow* mia::mainWindow = nullptr;
 void mia::InitEngine()
 {
     if (!glfwInit()) {
-        throw std::runtime_error("Failed to init GLFW");
+        LogManager::LogError("Failed to init GLFW");
     }
 }
 
@@ -27,7 +27,22 @@ void mia::MakeWindow(int w, int h)
         NULL
     );
 
-    glfwMakeContextCurrent(mainWindow);
+	glfwMakeContextCurrent(mainWindow);
+
+        // GLFWwindow* wwww = glfwGetCurrentContext();
+        // int window_width, window_height;
+        // glfwGetFramebufferSize(wwww, &window_width, &window_height);
+        // printf(":: %d %d", window_width, window_height);
+
+    // glewExperimental = GL_TRUE;
+    // GLenum err = glewInit(); 
+
+    // if (GLEW_OK != err)
+    // {
+    //     /* Problem: glewInit failed, something is seriously wrong. */
+    //     fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
+
+    // }
 }
 
 void mia::TerminateEngine()

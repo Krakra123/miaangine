@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "mia.h"
-#include <GLFW/glfw3.h>
 
 class ObjA : public mia::Entity
 {
@@ -36,6 +35,7 @@ public:
 
 int main()
 {
+    std::cout << " AAAA " << "\n";
     mia::InitEngine();
     mia::MakeWindow(1280, 720);
 
@@ -48,6 +48,4 @@ int main()
         if (mia::InputManager::GetKey(GLFW_KEY_F)) printf(".");
         if (mia::InputManager::GetKeyUp(GLFW_KEY_F)) printf("]");
     }
-
-    mia::TerminateEngine();
 }
