@@ -5,5 +5,6 @@
 #include "debug/log-system.h"
 #include "input/input-manager.h"
 #include "entity/entity-manager.h"
+#include "shaders/shader-util.h"
 
 #endif

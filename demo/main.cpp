@@ -41,7 +41,29 @@ int main()
 
     mia::InputManager::Init();
 
+    mia::ShaderUtil shaderUtil;
+    shaderUtil.Load("E:/CppProject/mia/src/shaders/vs.shader", "E:/CppProject/mia/src/shaders/fs.shader");
+
+    float points[6] = {
+        -.8f, -.5f,
+        .0f, .9f,
+        .5f, -.7f
+    };
+
+    unsigned int buffer;
+    glGenBuffers(1, &buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, buffer);
+    glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), points, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+
+    shaderUtil.Use();
+
     while (mia::IsRunning()) {
+        glClear(GL_COLOR_BUFFER_BIT);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glfwSwapBuffers(mia::mainWindow);
+
         mia::InputManager::Update();
 
         if (mia::InputManager::GetKeyDown(GLFW_KEY_F)) printf("[");

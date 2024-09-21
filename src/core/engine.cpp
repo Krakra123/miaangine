@@ -29,7 +29,6 @@ void mia::MakeWindow(int w, int h)
 
 	glfwMakeContextCurrent(mainWindow);
 
-    glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK) {
         LogManager::LogError("Failed to init Glew");\
     }
