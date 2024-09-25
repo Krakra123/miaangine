@@ -7,4 +7,6 @@
 #include "entity/entity-manager.h"
 #include "shaders/shader-util.h"
 
+#include "general/math/vector.h"
+
 #endif
