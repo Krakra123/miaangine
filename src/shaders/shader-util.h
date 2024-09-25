@@ -13,15 +13,13 @@ namespace mia
         ~ShaderUtil();
 
     public:
-        bool Load(const std::string& vertexSource, const std::string& fragmentSource);
-        void Use();
-        void Delete();
+        static void SetAssetPath(const std::string& path);
+
+        static unsigned int Load(const std::string& vertexFileDir, const std::string& fragmentFileDir);
+        static unsigned int CreateShader(const std::string& vertexShader, const std::string& fragmentShader);
 
     private:
-        unsigned int _programID;
-
-        unsigned int GetCompiledShader(unsigned int type, const std::string& source);
-        std::string ReadFile(const std::string& source);
+        static std::string _assetPath;
     };
 }
 

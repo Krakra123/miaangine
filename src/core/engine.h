@@ -5,8 +5,7 @@
 
 namespace mia
 {
-    void InitEngine();
-    void MakeWindow(int w, int h);
+    void InitWindow(int w, int h);
 
     void TerminateEngine();
 

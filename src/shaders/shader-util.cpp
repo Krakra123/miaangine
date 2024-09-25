@@ -8,46 +8,63 @@
 
 namespace mia
 {
+    std::string ReadFile(const std::string& path);
+    unsigned int CompileShader(unsigned int type, const std::string& source);
+    //
+
+    std::string ShaderUtil::_assetPath;
+
     ShaderUtil::ShaderUtil() = default;
     ShaderUtil::~ShaderUtil() = default;
 
-    bool ShaderUtil::Load(const std::string& vertexSource, const std::string& fragmentSource)
+    void ShaderUtil::SetAssetPath(const std::string& path)
     {
-        const std::string fVs = ReadFile(vertexSource);
-        const std::string fFs = ReadFile(fragmentSource);
+        _assetPath = path;
+    }
 
-        _programID = glCreateProgram();
+    unsigned int ShaderUtil::Load(const std::string& vertexFileDir, const std::string& fragmentFileDir)
+    {
+        return CreateShader(ReadFile(_assetPath + '/' + vertexFileDir), ReadFile(_assetPath + '/' + fragmentFileDir));
+    }
 
-        unsigned int vs = GetCompiledShader(GL_VERTEX_SHADER, fVs);
-        unsigned int fs = GetCompiledShader(GL_VERTEX_SHADER, fFs);
+    unsigned int ShaderUtil::CreateShader(const std::string& vertexShader, const std::string& fragmentShader)
+    {
+        unsigned int program = glCreateProgram();
 
-        glAttachShader(_programID, vs);
-        glAttachShader(_programID, fs);
+        unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
+        unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
 
-        glLinkProgram(_programID);
-        glValidateProgram(_programID);
+        glAttachShader(program, vs);
+        glAttachShader(program, fs);
+
+        glLinkProgram(program);
+        glValidateProgram(program);
 
         glDeleteShader(vs);
         glDeleteShader(fs);
 
-        return true;
+        return program;
     }
 
-    void ShaderUtil::Use()
+    std::string ReadFile(const std::string& path)
     {
-        glUseProgram(_programID);
-    }
-    void ShaderUtil::Delete()
-    {
-        glDeleteProgram(_programID);
+        std::ifstream is(path);
+
+        if (!is.is_open()) {
+            mia::LogManager::LogError("Undefined path: %s", path.c_str());
+        }
+
+        std::istreambuf_iterator<char> begin(is);
+        std::istreambuf_iterator<char> end;
+        return std::string(begin, end);
     }
 
-    unsigned int ShaderUtil::GetCompiledShader(unsigned int type, const std::string& source)
+    unsigned int CompileShader(unsigned int type, const std::string& source)
     {
         unsigned int id = glCreateShader(type);
 
-        const char* cSource = source.c_str();
-        glShaderSource(id, 1, &cSource, nullptr);
+        const char* src = source.c_str();
+        glShaderSource(id, 1, &src, nullptr);
         glCompileShader(id);
 
         GLint res = -1;
@@ -65,14 +82,5 @@ namespace mia
         }
 
         return id;
-    }
-
-    std::string ShaderUtil::ReadFile(const std::string& source)
-    {
-        std::ifstream is(source);
-        std::istreambuf_iterator<char> begin(is);
-        std::istreambuf_iterator<char> end;
-        return std::string(begin, end);
-
     }
 }
