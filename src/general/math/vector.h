@@ -80,6 +80,11 @@ namespace mia
             return *this / mag;
         }
 
+		inline Vector2 Round() const
+		{
+			return Vector2(std::round(x), std::round(y));
+		}
+
 		inline bool operator==(const Vector2& other) const
         {
 			return Math::Approximately(x, other.x) && Math::Approximately(y, other.y); 
@@ -127,8 +132,6 @@ namespace mia
 		}
 
 		inline explicit operator Vector2Int() const;
-
-		inline Vector2 Round() const;
     };
     inline Vector2 operator*(float left, Vector2 right)
 	{
@@ -247,10 +250,6 @@ namespace mia
     {
         return Vector2Int(static_cast<int>(x), static_cast<int>(y));
     }
-	inline Vector2 Vector2::Round() const
-	{
-		return Vector2(std::round(x), std::round(y));
-	}
 }
 
 #endif
