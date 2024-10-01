@@ -6,6 +6,9 @@
 #include "input/input-manager.h"
 #include "entity/entity-manager.h"
 #include "shaders/shader-util.h"
+#include "render/vertex-buffer.h"
+#include "render/index-buffer.h"
+#include "render/vertex-array.h"
 
 #include "general/math/vector.h"
 

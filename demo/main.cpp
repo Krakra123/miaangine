@@ -40,35 +40,56 @@ int main()
     mia::InputManager::Init();
 
     float points[] = {
-        -0.5f, -0.5f,
-         0.5f, -0.5f,
-         0.5f,  0.5f,
-
          0.5f,  0.5f,
         -0.5f,  0.5f,
         -0.5f, -0.5f,
+         0.5f, -0.5f,
     };
 
-    unsigned int buffer;
-    glGenBuffers(1, &buffer);
-    glBindBuffer(GL_ARRAY_BUFFER, buffer);
-    glBufferData(GL_ARRAY_BUFFER, 2 * 6 * sizeof(points), &points, GL_STATIC_DRAW);
+    unsigned int indices[] = {
+        0, 1, 2,
+        2, 3, 0
+    };
 
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+    unsigned int vao;
+    glGenVertexArrays(1, &vao);
+    glBindVertexArray(vao);
+
+    mia::VertexBuffer vb(points, 4 * 2 * sizeof(float));
+    mia::VertexBufferLayout layout;
+    layout.Push<float>(2);
+
+    mia::VertexArray va;
+    va.AddBuffer(vb, layout);
+
+    mia::IndexBuffer ib(indices, 3 * 2 * sizeof(unsigned int));
 
     mia::ShaderUtil::SetAssetPath("E:/CppProject/mia/asset/shader");
-    unsigned int program = mia::ShaderUtil::Load("testing-vs.glsl", "testing-fs.glsl");
-    glUseProgram(program);
+    unsigned int shader = mia::ShaderUtil::Load("testing-vs.glsl", "testing-fs.glsl");
+    glUseProgram(shader);
 
+    int location = glGetUniformLocation(shader, "u_color");
+    glUniform4f(location, 0.2f, 0.5f, 0.1f, 1.0f);
+
+    float r = .2f;
+    float inc = .002f;
     while (mia::IsRunning()) {
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glDrawArrays(GL_TRIANGLES, 0, 6);
+        va.Bind();
+        ib.Bind();
+
+        glUseProgram(shader);
+
+        glUniform4f(location, r, 0.5f, 0.2f, 1.0f);
+        if (r > 1.0f || r < 0.0f) inc *= -1;
+        r += inc;
+
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
         glfwSwapBuffers(mia::mainWindow);
         glfwPollEvents();
     }
 
-    glDeleteProgram(program);
+    glDeleteProgram(shader);
 }
