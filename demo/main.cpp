@@ -51,18 +51,14 @@ int main()
         2, 3, 0
     };
 
-    unsigned int vao;
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
-
-    mia::VertexBuffer vb(points, 4 * 2 * sizeof(float));
+    mia::VertexBuffer vb(points, 4 * 2, sizeof(float));
     mia::VertexBufferLayout layout;
     layout.Push<float>(2);
 
     mia::VertexArray va;
     va.AddBuffer(vb, layout);
 
-    mia::IndexBuffer ib(indices, 3 * 2 * sizeof(unsigned int));
+    mia::IndexBuffer ib(indices, 3 * 2);
 
     mia::ShaderUtil::SetAssetPath("E:/CppProject/mia/asset/shader");
     unsigned int shader = mia::ShaderUtil::Load("testing-vs.glsl", "testing-fs.glsl");

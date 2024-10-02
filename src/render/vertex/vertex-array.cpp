@@ -16,6 +16,7 @@ namespace mia
     {
         Bind();
         buffer.Bind();
+        
         const auto& _elements = layout.GetElements();
         unsigned int offset = 0;
         for (int i = 0; i < (int)_elements.size(); i++) {

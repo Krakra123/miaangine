@@ -9,17 +9,19 @@ namespace mia
     class VertexBuffer
     {
     public:
-        VertexBuffer(const void* data, unsigned int size);
+        VertexBuffer(const void* data, unsigned int count, unsigned int size);
         ~VertexBuffer();
 
     private:
         unsigned int _bufferId;
+        unsigned int _count;
 
     public:
         void Bind() const;
         void Unbind() const;
 
         inline unsigned int GetBuffer() const { return _bufferId; }
+        inline unsigned int GetCount() const { return _count; }
     };
 
     // ====================
@@ -42,9 +44,7 @@ namespace mia
     class VertexBufferLayout
     {
     public:
-        VertexBufferLayout(): 
-            _stride(0) 
-        {}
+        VertexBufferLayout();
 
     private:
         std::vector<VertexBufferElement> _elements;

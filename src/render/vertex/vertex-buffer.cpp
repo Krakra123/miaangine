@@ -4,11 +4,12 @@
 
 namespace mia
 {
-    VertexBuffer::VertexBuffer(const void* data, unsigned int size) 
+    VertexBuffer::VertexBuffer(const void* data, unsigned int count, unsigned int size):
+        _count(count)
     {
         glGenBuffers(1, &_bufferId);
         glBindBuffer(GL_ARRAY_BUFFER, _bufferId);
-        glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, count * size, data, GL_STATIC_DRAW);
     }
 
     VertexBuffer::~VertexBuffer()
@@ -27,6 +28,10 @@ namespace mia
     }
 
     // ====================
+    VertexBufferLayout::VertexBufferLayout():
+        _stride(0)
+    {}
+
     template<>
     void VertexBufferLayout::Push<unsigned int>(unsigned int count) 
     {
