@@ -12,14 +12,15 @@ namespace mia
         VertexBuffer(const void* data, unsigned int count, unsigned int size);
         ~VertexBuffer();
 
+    public:
+        void Bind() const;
+        void Unbind() const;
+
     private:
         unsigned int _bufferId;
         unsigned int _count;
 
     public:
-        void Bind() const;
-        void Unbind() const;
-
         inline unsigned int GetBuffer() const { return _bufferId; }
         inline unsigned int GetCount() const { return _count; }
     };
@@ -46,14 +47,15 @@ namespace mia
     public:
         VertexBufferLayout();
 
+    public:
+        template<typename T>
+        void Push(unsigned int count);
+
     private:
         std::vector<VertexBufferElement> _elements;
         unsigned int _stride;
 
     public:
-        template<typename T>
-        void Push(unsigned int count);
-
         inline const std::vector<VertexBufferElement>& GetElements() const { return _elements; }
         inline unsigned int GetStride() const { return _stride; }
     };

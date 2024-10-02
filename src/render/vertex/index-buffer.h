@@ -9,14 +9,15 @@ namespace mia
         IndexBuffer(const unsigned int* data, unsigned int count);
         ~IndexBuffer();
 
+    public:
+        void Bind() const;
+        void Unbind() const;
+
     private:
         unsigned int _bufferId;
         unsigned int _count;
 
     public:
-        void Bind() const;
-        void Unbind() const;
-
         inline unsigned int GetBuffer() const { return _bufferId; }
         inline unsigned int GetCount() const { return _count; }
     };

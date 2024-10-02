@@ -17,6 +17,12 @@ namespace mia
         Shader(const std::string& vertexShaderPath, const std::string& fragmentShaderPath);
         ~Shader();
 
+    public:
+        void Bind() const;
+        void Unbind() const;
+
+        void SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3);
+
     private:
         unsigned int _type;
         std::string _vertexPath;
@@ -25,11 +31,6 @@ namespace mia
         unsigned int _shaderId;
 
     public:
-        void Bind() const;
-        void Unbind() const;
-
-        void SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3);
-
         inline unsigned int GetType() const { return _type; }
         inline const std::string& GetVertexShaderPath() const { return _vertexPath; }
         inline const std::string& GetFragmentShaderPath() const { return _fragmentPath; }

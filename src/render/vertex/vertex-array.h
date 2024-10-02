@@ -10,15 +10,15 @@ namespace mia
     public:
         VertexArray();
         ~VertexArray();
-    
-    private:
-        unsigned int _arrayId;
 
     public:
         void AddBuffer(const VertexBuffer& buffer, const VertexBufferLayout& layout);
     
         void Bind() const;
         void Unbind() const;
+
+    private:
+        unsigned int _arrayId;
     };
 }
 
