@@ -16,7 +16,7 @@ namespace mia
 
         // Public methods
         bool IsActive() const;
-        void SetActive(bool newState);
+        virtual void SetActive(bool newState);
 
     private:
         // Data

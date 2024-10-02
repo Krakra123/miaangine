@@ -66,18 +66,13 @@ int main()
     float r = .2f;
     float inc = .002f;
     while (mia::IsRunning()) {
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        va.Bind();
-        ib.Bind();
-
-        shader.Bind();
+        mia::Renderer::Clear();
 
         shader.SetUniform4f("u_color", r, 0.5f, 0.2f, 1.0f);
         if (r > 1.0f || r < 0.0f) inc *= -1;
         r += inc;
 
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        mia::Renderer::Draw(va, ib, shader);
 
         glfwSwapBuffers(mia::mainWindow);
         glfwPollEvents();
