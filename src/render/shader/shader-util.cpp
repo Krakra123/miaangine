@@ -8,7 +8,6 @@
 
 namespace mia
 {
-    std::string ReadFile(const std::string& path);
     unsigned int CompileShader(unsigned int type, const std::string& source);
     //
 
@@ -22,23 +21,24 @@ namespace mia
         _assetPath = path;
     }
 
-    unsigned int ShaderUtil::Load(const std::string& vertexFileDir, const std::string& fragmentFileDir)
+    unsigned int ShaderUtil::Load(const std::string& vertexShaderPath, const std::string& fragmentShaderPath)
     {
-        return CreateShader(ReadFile(_assetPath + '/' + vertexFileDir), ReadFile(_assetPath + '/' + fragmentFileDir));
+        return CreateShader(ReadFile(vertexShaderPath), ReadFile(fragmentShaderPath));
     }
 
-    unsigned int ShaderUtil::CreateShader(const std::string& vertexShader, const std::string& fragmentShader)
+    unsigned int ShaderUtil::CreateShader(const std::string& vertexShaderSource, const std::string& fragmentShaderSource)
     {
         unsigned int program = glCreateProgram();
 
-        unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
-        unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
+        unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShaderSource);
+        unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShaderSource);
 
-        glAttachShader(program, vs);
+        glValidateProgram(program);
+
         glAttachShader(program, fs);
+        glAttachShader(program, vs);
 
         glLinkProgram(program);
-        glValidateProgram(program);
 
         glDeleteShader(vs);
         glDeleteShader(fs);
@@ -46,12 +46,16 @@ namespace mia
         return program;
     }
 
-    std::string ReadFile(const std::string& path)
+    std::string ShaderUtil::ReadFile(const std::string& path)
     {
         std::ifstream is(path);
 
         if (!is.is_open()) {
-            mia::LogManager::LogError("Undefined path: %s", path.c_str());
+            is = std::ifstream(_assetPath + '/' + path);
+
+            if (!is.is_open()) {
+                mia::LogManager::LogError("Undefined path: %s", path.c_str());
+            }
         }
 
         std::istreambuf_iterator<char> begin(is);

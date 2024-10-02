@@ -61,11 +61,7 @@ int main()
     mia::IndexBuffer ib(indices, 3 * 2);
 
     mia::ShaderUtil::SetAssetPath("E:/CppProject/mia/asset/shader");
-    unsigned int shader = mia::ShaderUtil::Load("testing-vs.glsl", "testing-fs.glsl");
-    glUseProgram(shader);
-
-    int location = glGetUniformLocation(shader, "u_color");
-    glUniform4f(location, 0.2f, 0.5f, 0.1f, 1.0f);
+    mia::Shader shader("testing-vs.glsl", "testing-fs.glsl");
 
     float r = .2f;
     float inc = .002f;
@@ -75,9 +71,9 @@ int main()
         va.Bind();
         ib.Bind();
 
-        glUseProgram(shader);
+        shader.Bind();
 
-        glUniform4f(location, r, 0.5f, 0.2f, 1.0f);
+        shader.SetUniform4f("u_color", r, 0.5f, 0.2f, 1.0f);
         if (r > 1.0f || r < 0.0f) inc *= -1;
         r += inc;
 
@@ -86,6 +82,4 @@ int main()
         glfwSwapBuffers(mia::mainWindow);
         glfwPollEvents();
     }
-
-    glDeleteProgram(shader);
 }
