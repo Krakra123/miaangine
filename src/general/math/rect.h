@@ -9,54 +9,54 @@ namespace mia
     {
     public:
         inline Rect(Vector2 position = Vector2::Zero(), Vector2 size = Vector2::One()):
-            position(position),
-            size(size)
+            x(position.x), y(position.y), w(size.x), h(size.y)
         {}
-        inline Rect(float x, float y, float sx = 1, float sy = 1):
-            position(Vector2(x, y)),
-            size(Vector2(sx, sy))
+        inline Rect(float x, float y, float w = 1, float h = 1):
+            x(x), y(y), w(w), h(h)
         {}
 
-        Vector2 position;
-        Vector2 size;
+        float x, y, w, h;
+
+        // Vector2 position;
+        // Vector2 size;
 
         inline bool Contain(const Vector2& point) const
         {
             return (
-                position.x          < point.x && 
-                position.x + size.x > point.x &&
-                position.y          < point.y && 
-                position.y + size.y > point.y
+                x     < point.x && 
+                x + w > point.x &&
+                y     < point.y && 
+                y + h > point.y
             );
         }
 
         inline bool Contain(const Rect& other) const
         {
             return (
-                position.x          < other.position.x                && 
-                position.x + size.x > other.position.x + other.size.x &&
-                position.y          < other.position.y                && 
-                position.y + size.y > other.position.y + other.size.y
+                x     < other.x           && 
+                x + w > other.x + other.w &&
+                y     < other.y           && 
+                y + h > other.y + other.h
             );
         }
 
         inline bool Overlap(const Rect& other) const
         {
             return (
-                position.x          < other.position.x + other.size.x && 
-                position.x + size.x > other.position.x                &&
-                position.y          < other.position.y + other.size.y && 
-                position.y + size.y > other.position.y
+                x     < other.x + other.w && 
+                x + w > other.x           &&
+                y     < other.y + other.h && 
+                y + h > other.y
             );
         }
 
         inline bool operator==(const Rect& other)
         {
             return (
-                Math::Approximately(position.x, other.position.x) &&
-                Math::Approximately(position.y, other.position.y) &&
-                Math::Approximately(size.x, other.size.x) &&
-                Math::Approximately(size.y, other.size.y) 
+                Math::Approximately(x, other.x) &&
+                Math::Approximately(y, other.y) &&
+                Math::Approximately(w, other.w) &&
+                Math::Approximately(h, other.h) 
             );
         }
     };
