@@ -12,25 +12,25 @@ namespace mia
 
         float x, y;
 
-        inline Vector2& operator+=(const Vector2& other);
-		inline Vector2& operator-=(const Vector2& other);
-		inline Vector2& operator*=(const float value);
-		inline Vector2& operator/=(const float value);
+        Vector2& operator+=(const Vector2& other);
+		Vector2& operator-=(const Vector2& other);
+		Vector2& operator*=(const float value);
+		Vector2& operator/=(const float value);
 
-		inline bool operator==(const Vector2& other) const;
-        inline bool operator!=(const Vector2& other) const;
+		bool operator==(const Vector2& other) const;
+        bool operator!=(const Vector2& other) const;
 
-        inline Vector2 operator+(const Vector2& other) const;
-		inline Vector2 operator-(const Vector2& other) const;
-		inline Vector2 operator*(const float value) const;
-		inline Vector2 operator/(const float value) const;
+        Vector2 operator+(const Vector2& other) const;
+		Vector2 operator-(const Vector2& other) const;
+		Vector2 operator*(const float value) const;
+		Vector2 operator/(const float value) const;
 
-        inline float Dot(const Vector2& other) const;
-		inline float Cross(const Vector2& other) const;
+        float Dot(const Vector2& other) const;
+		float Cross(const Vector2& other) const;
 
-		inline float Magnitude() const;
-        inline Vector2 Normalize() const;
-		inline Vector2 Round() const;
+		float Magnitude() const;
+        Vector2 Normalize() const;
+		Vector2 Round() const;
 
         static const Vector2& Up() noexcept;
 		static const Vector2& Down() noexcept;
@@ -40,9 +40,9 @@ namespace mia
 		static const Vector2& One() noexcept;
 		static const Vector2& Infinity() noexcept;
 
-		inline operator Vector2Int() const;
+		operator Vector2Int() const;
     };
-    inline Vector2 operator*(float left, Vector2 right);
+    Vector2 operator*(float left, Vector2 right);
 
     class Vector2Int
     {
@@ -51,18 +51,18 @@ namespace mia
 
         int x, y;
 
-        inline Vector2Int& operator+=(const Vector2Int& other);
-		inline Vector2Int& operator-=(const Vector2Int& other);
-		inline Vector2Int& operator*=(const int value);
-		inline Vector2Int& operator/=(const int value);
+        Vector2Int& operator+=(const Vector2Int& other);
+		Vector2Int& operator-=(const Vector2Int& other);
+		Vector2Int& operator*=(const int value);
+		Vector2Int& operator/=(const int value);
 
-		inline bool operator==(const Vector2Int& other) const;
-        inline bool operator!=(const Vector2Int& other) const;
+		bool operator==(const Vector2Int& other) const;
+        bool operator!=(const Vector2Int& other) const;
 
-        inline Vector2Int operator+(const Vector2Int& other) const;
-		inline Vector2Int operator-(const Vector2Int& other) const;
-		inline Vector2Int operator*(const int value) const;
-		inline Vector2Int operator/(const int value) const;
+        Vector2Int operator+(const Vector2Int& other) const;
+		Vector2Int operator-(const Vector2Int& other) const;
+		Vector2Int operator*(const int value) const;
+		Vector2Int operator/(const int value) const;
 
         static const Vector2Int& Up() noexcept;
 		static const Vector2Int& Down() noexcept;
@@ -72,9 +72,9 @@ namespace mia
 		static const Vector2Int& One() noexcept;
 		static const Vector2Int& Infinity() noexcept;
 
-		inline explicit operator Vector2() const;
+		explicit operator Vector2() const;
     };
-    inline Vector2Int operator*(int left, Vector2Int right);
+    Vector2Int operator*(int left, Vector2Int right);
 }
 
 #endif

@@ -9,5 +9,6 @@
 #include "render/shader/shader-util.h"
 
 #include "general/math/vector.h"
+#include "general/math/matrix.h"
 
 #endif

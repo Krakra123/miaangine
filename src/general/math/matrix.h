@@ -9,24 +9,28 @@ namespace mia
     class Matrix3
     {
     public:
-        inline Matrix3(const std::array<float, 9>& values = std::array<float, 9>());
+        Matrix3(const std::array<float, 9>& values = std::array<float, 9>());
 
         std::array<float, 9> values;
 
-        inline float& operator()(int row, int col);
-        inline const float& operator()(int row, int col) const;
+        float& operator()(int row, int col);
+        const float& operator()(int row, int col) const;
 
         Matrix3 operator+(const Matrix3& other) const;
         Matrix3 operator*(const Matrix3& other) const;
         Matrix3 operator*(float value) const;
 
         Matrix3 Transpose() const;
+        float Determinant() const;
+        Matrix3 Adjugate() const;
+        Matrix3 Inverse() const;
 
         static const Matrix3& Identity() noexcept;
-        static const Matrix3& TranslationMatrix(float x, float y, float z) noexcept;
-        static const Matrix3& ScaleMatrix(float x, float y, float z) noexcept;
-        static const Matrix3& RotationMatrix(float angle) noexcept;
-        static const Matrix3& ShearMatrix(float x, float y) noexcept;
+        static const Matrix3& Stretch(float k) noexcept;
+        static const Matrix3& Translation(float x, float y) noexcept;
+        static const Matrix3& Scale(float x, float y) noexcept;
+        static const Matrix3& Rotation(float angle) noexcept;
+        static const Matrix3& Shear(float x, float y) noexcept;
     };
 
     // TODO this is 2d engine, maybe general matrix instead of specific matrix4

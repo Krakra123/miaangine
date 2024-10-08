@@ -10,86 +10,86 @@ namespace mia
         x(x), y(y)
     {}
 
-    inline Vector2& Vector2::operator+=(const Vector2& other)
+    Vector2& Vector2::operator+=(const Vector2& other)
     {
         x += other.x;
         y += other.y;
         return *this;
     }
-    inline Vector2& Vector2::operator-=(const Vector2& other)
+    Vector2& Vector2::operator-=(const Vector2& other)
     {
         x -= other.x;
         y -= other.y;
         return *this;
     }
-    inline Vector2& Vector2::operator*=(const float value)
+    Vector2& Vector2::operator*=(const float value)
     {
         x = x * value;
         y = y * value;
         return *this;
     }
-    inline Vector2& Vector2::operator/=(const float value)
+    Vector2& Vector2::operator/=(const float value)
     {
         x = x / value;
         y = y / value;
         return *this;
     }
     
-    inline bool Vector2::operator==(const Vector2& other) const
+    bool Vector2::operator==(const Vector2& other) const
     {
         return Math::Approximately(x, other.x) && Math::Approximately(y, other.y); 
     }
-    inline bool Vector2::operator!=(const Vector2& other) const
+    bool Vector2::operator!=(const Vector2& other) const
     {
         return !(*this == other);
     }
 
-    inline Vector2 Vector2::operator+(const Vector2& other) const
+    Vector2 Vector2::operator+(const Vector2& other) const
     {
         return Vector2(x + other.x, y + other.y);
     }
-    inline Vector2 Vector2::operator-(const Vector2& other) const
+    Vector2 Vector2::operator-(const Vector2& other) const
     {
         return Vector2(x - other.x, y - other.y);
     }
-    inline Vector2 Vector2::operator*(const float value) const
+    Vector2 Vector2::operator*(const float value) const
     {
         return Vector2(x * value, y * value); 
     }
-    inline Vector2 Vector2::operator/(const float value) const
+    Vector2 Vector2::operator/(const float value) const
     {
         return Vector2(x / value, y / value); 
     }
-    inline Vector2 operator*(float left, Vector2 right)
+    Vector2 operator*(float left, Vector2 right)
     {
         return right * left;
     }
 
-    inline float Vector2::Dot(const Vector2& other) const
+    float Vector2::Dot(const Vector2& other) const
     {
         return (x * other.x) + (y * other.y);
     }
-    inline float Vector2::Cross(const Vector2& other) const
+    float Vector2::Cross(const Vector2& other) const
     {
         return (x * other.y) - (y * other.x);
     }
 
-    inline float Vector2::Magnitude() const
+    float Vector2::Magnitude() const
     {
         return sqrt(x * x + y * y);
     }
-    inline Vector2 Vector2::Normalize() const
+    Vector2 Vector2::Normalize() const
     {
         float mag = Magnitude();
         if (mag == 0) return Vector2();
         return *this / mag;
     }
-    inline Vector2 Vector2::Round() const
+    Vector2 Vector2::Round() const
     {
         return Vector2(std::round(x), std::round(y));
     }
 
-    inline Vector2::operator Vector2Int() const
+    Vector2::operator Vector2Int() const
     {
         return Vector2Int(static_cast<int>(x), static_cast<int>(y));
     }
@@ -136,53 +136,53 @@ namespace mia
         x(x), y(y)
     {}
 
-    inline Vector2Int& Vector2Int::operator+=(const Vector2Int& other)
+    Vector2Int& Vector2Int::operator+=(const Vector2Int& other)
     {
         x += other.x;
         y += other.y;
         return *this;
     }
-    inline Vector2Int& Vector2Int::operator-=(const Vector2Int& other)
+    Vector2Int& Vector2Int::operator-=(const Vector2Int& other)
     {
         x -= other.x;
         y -= other.y;
         return *this;
     }
-    inline Vector2Int& Vector2Int::operator*=(const int value)
+    Vector2Int& Vector2Int::operator*=(const int value)
     {
         x = x * value;
         y = y * value;
         return *this;
     }
-    inline Vector2Int& Vector2Int::operator/=(const int value)
+    Vector2Int& Vector2Int::operator/=(const int value)
     {
         x = x / value;
         y = y / value;
         return *this;
     }
 
-    inline bool Vector2Int::operator==(const Vector2Int& other) const
+    bool Vector2Int::operator==(const Vector2Int& other) const
     {
         return (x == other.x) && (y == other.y);
     }
-    inline bool Vector2Int::operator!=(const Vector2Int& other) const
+    bool Vector2Int::operator!=(const Vector2Int& other) const
     {
         return !(*this == other);
     }
 
-    inline Vector2Int Vector2Int::operator+(const Vector2Int& other) const
+    Vector2Int Vector2Int::operator+(const Vector2Int& other) const
     {
         return Vector2Int(x + other.x, y + other.y);
     }
-    inline Vector2Int Vector2Int::operator-(const Vector2Int& other) const
+    Vector2Int Vector2Int::operator-(const Vector2Int& other) const
     {
         return Vector2Int(x - other.x, y - other.y);
     }
-    inline Vector2Int Vector2Int::operator*(const int value) const
+    Vector2Int Vector2Int::operator*(const int value) const
     {
         return Vector2Int(x * value, y * value); 
     }
-    inline Vector2Int Vector2Int::operator/(const int value) const
+    Vector2Int Vector2Int::operator/(const int value) const
     {
         return Vector2Int(x / value, y / value); 
     }
@@ -223,11 +223,11 @@ namespace mia
         return result;
     }
 
-    inline Vector2Int::operator Vector2() const
+    Vector2Int::operator Vector2() const
     {
         return Vector2(static_cast<float>(x), static_cast<float>(y));
     }
-    inline Vector2Int operator*(int left, Vector2Int right)
+    Vector2Int operator*(int left, Vector2Int right)
     {
         return right * left;
     }
