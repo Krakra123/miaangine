@@ -9,6 +9,7 @@ namespace mia
         Math() = delete;
 
         static const float EPSILON;
+        static const float PI;
 
         inline static bool Approximately(float a, float b) 
         {
@@ -16,7 +17,8 @@ namespace mia
         }
     };
 
-    const float Math::EPSILON = 1.17549435e-38;
+    const float Math::EPSILON = 2.0e-7;
+    const float Math::PI = 3.1415926536;
 }
 
 #endif
