@@ -7,7 +7,9 @@
 #include "entity/entity-manager.h"
 #include "render/general/renderer.h"
 #include "render/shader/shader-util.h"
+#include "world/point.h"
 
+#include "general/math/math.h"
 #include "general/math/vector.h"
 #include "general/math/matrix.h"
 

@@ -11,8 +11,10 @@ namespace mia
     public:
         Matrix3(const std::array<float, 9>& values = std::array<float, 9>());
 
+		// Attributes
         std::array<float, 9> values;
 
+		// Operators
         float& operator()(int row, int col);
         const float& operator()(int row, int col) const;
 
@@ -20,17 +22,18 @@ namespace mia
         Matrix3 operator*(const Matrix3& other) const;
         Matrix3 operator*(float value) const;
 
+		// Public methods
         Matrix3 Transpose() const;
         float Determinant() const;
         Matrix3 Adjugate() const;
         Matrix3 Inverse() const;
 
+		// Static properties
         static const Matrix3& Identity() noexcept;
-        static const Matrix3& Stretch(float k) noexcept;
-        static const Matrix3& Translation(float x, float y) noexcept;
-        static const Matrix3& Scale(float x, float y) noexcept;
-        static const Matrix3& Rotation(float angle) noexcept;
-        static const Matrix3& Shear(float x, float y) noexcept;
+        static Matrix3 Translation(float x, float y);
+        static Matrix3 Scale(float x, float y);
+        static Matrix3 Rotation(float angle);
+        static Matrix3 Shear(float x, float y);
     };
 
     // TODO this is 2d engine, maybe general matrix instead of specific matrix4

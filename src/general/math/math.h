@@ -1,5 +1,5 @@
 #ifndef _MIA_MATH_H
-#define _MIA_PATH_H
+#define _MIA_MATH_H
 
 namespace mia
 {
@@ -15,10 +15,12 @@ namespace mia
         {
             return a >= b - EPSILON && a <= b + EPSILON;
         }
-    };
 
-    const float Math::EPSILON = 2.0e-7;
-    const float Math::PI = 3.1415926536;
+        inline static int Sign(float x)
+        {
+            return (x > 0) - (x < 0);
+        }
+    };
 }
 
 #endif

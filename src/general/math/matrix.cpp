@@ -87,49 +87,33 @@ namespace mia
         static const Matrix3 result
             = Matrix3({ 1, 0, 0, 
                         0, 1, 0,
-                        0, 0, 1,});
+                        0, 0, 1});
         return result;
     }
-    const Matrix3& Matrix3::Stretch(float k) noexcept
+    Matrix3 Matrix3::Translation(float x, float y)
     {
-        static const Matrix3 result 
-            = Matrix3({ k, 0, 0,
-                        0, 1, 0,
-                        0, 0, 0});
-        return result;
-    }
-    const Matrix3& Matrix3::Translation(float x, float y) noexcept
-    {
-        static const Matrix3 result 
-            = Matrix3({ 1, 0, x, 
+        return Matrix3({1, 0, x, 
                         0, 1, y,
-                        0, 0, 1,});
-        return result;
+                        0, 0, 1});
     }
-    const Matrix3& Matrix3::Scale(float x, float y) noexcept
+    Matrix3 Matrix3::Scale(float x, float y)
     {
-        static const Matrix3 result 
-            = Matrix3({ x, 0, 0, 
+        return Matrix3({x, 0, 0, 
                         0, y, 0,
-                        0, 0, 1,});
-        return result;
+                        0, 0, 1});
     }
-    const Matrix3& Matrix3::Rotation(float angle) noexcept 
+    Matrix3 Matrix3::Rotation(float angle) 
     {
         float c = std::cos(angle);
         float s = std::sin(angle);
-        static const Matrix3 result 
-            = Matrix3({ c, -s, 0, 
+        return Matrix3({c, -s, 0, 
                         s,  c, 0,
-                        0,  0, 1,});
-        return result;
+                        0,  0, 1});
     }
-    const Matrix3& Matrix3::Shear(float x, float y) noexcept
+    Matrix3 Matrix3::Shear(float x, float y)
     {
-        static const Matrix3 result 
-            = Matrix3({ 1, x, 0, 
+        return Matrix3({1, x, 0, 
                         y, 1, 0,
-                        0, 0, 1,});
-        return result;
+                        0, 0, 1});
     }
 };

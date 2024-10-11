@@ -96,7 +96,7 @@ namespace mia
         if (Math::Approximately(x,  1)) return 0;
         if (Math::Approximately(x, -1)) return Math::PI;
 
-        return std::acos(x);
+        return std::acos(x) * Math::Sign(Cross(to));
     }
     float Vector2::Distance(const Vector2& other) const
     {
@@ -153,6 +153,10 @@ namespace mia
         Vector2 nNormal = normal.Normalize();
         float dot = in.Dot(normal);
         return Vector2(in.x - 2 * dot * nNormal.x, in.y - 2 * dot * nNormal.y);
+    }
+    Vector2 Vector2::GetDirection(float angle)
+    {
+        return Vector2(std::cos(angle), std::sin(angle));
     }
 
     Vector2::operator Vector2Int() const

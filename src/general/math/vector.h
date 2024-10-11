@@ -10,9 +10,10 @@ namespace mia
     public:
         Vector2(float x = 0, float y = 0);
 
+		// Attributes
         float x, y;
 
-		// Operator
+		// Operators
         Vector2& operator+=(const Vector2& other);
 		Vector2& operator-=(const Vector2& other);
 		Vector2& operator*=(const float value);
@@ -34,7 +35,7 @@ namespace mia
 		float Cross(const Vector2& other) const;
 		float Angle(const Vector2& to) const;
 		float Distance(const Vector2& other) const;
-		
+
 		// Static methods
 		static float Dot(const Vector2& a, const Vector2& b);
 		static float Cross(const Vector2& a, const Vector2& b);
@@ -47,6 +48,7 @@ namespace mia
 		static Vector2 MoveTowards(const Vector2& from, const Vector2& to, float delta);
 		static Vector2 Perpendicular(const Vector2& vector); 
 		static Vector2 Reflect(const Vector2& in, const Vector2& normal);
+		static Vector2 GetDirection(float angle);
 
 		// Static properties
         static const Vector2& Up() noexcept;
