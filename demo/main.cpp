@@ -3,37 +3,6 @@
 
 #include "mia.h"
 
-class ObjA : public mia::Entity
-{
-public:
-    ObjA(int s) : mia::Entity(typeid(ObjA)) 
-    {
-        id = s;
-    }
-
-    int id;
-
-    void Notify(const char* message)
-    {
-        printf("A-%d: %s\n", id, message);
-    }
-};
-class ObjB : public mia::Entity
-{
-public:
-    ObjB(int s) : mia::Entity(typeid(ObjB)) 
-    {
-        id = s;
-    }
-
-    int id;
-
-    void Notify(const char* message)
-    {
-        printf("B-%d: %s\n", id, message);
-    }
-};
-
 int main()
 {
     mia::InitWindow(1280, 720);
