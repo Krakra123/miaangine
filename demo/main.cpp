@@ -8,6 +8,10 @@ int main()
     mia::InitWindow(1280, 720);
     mia::InputManager::Init();
 
+    // mia::Vector2 a = {3.333333, 12};
+    // mia::Vector2 b = {10.0 / 3, (6.0 - 4) * 6};
+    // printf("%.9f %.9f : %.9f %.9f -> %d", a.x, a.y, b.x, b.y, a == b);
+
     float points[] = {
          0.5f,  0.5f,
         -0.5f,  0.5f,

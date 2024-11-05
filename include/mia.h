@@ -10,7 +10,5 @@
 #include "world/point.h"
 
 #include "general/math/math.h"
-#include "general/math/vector.h"
-#include "general/math/matrix.h"
 
 #endif

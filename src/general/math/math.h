@@ -1,6 +1,10 @@
 #ifndef _MIA_MATH_H
 #define _MIA_MATH_H
 
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
+#include <numbers>
+
 namespace mia
 {
     class Math
@@ -11,15 +15,8 @@ namespace mia
         static const float EPSILON;
         static const float PI;
 
-        inline static bool Approximately(float a, float b) 
-        {
-            return a >= b - EPSILON && a <= b + EPSILON;
-        }
-
-        inline static int Sign(float x)
-        {
-            return (x > 0) - (x < 0);
-        }
+        static bool Approximately(float a, float b, float epsilon = EPSILON);
+        static int Sign(float x);
     };
 }
 

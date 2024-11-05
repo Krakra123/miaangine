@@ -1,7 +1,7 @@
 #ifndef _MIA_TRANSFORM_H
 #define _MIA_TRANSFORM_H
 
-#include "general/math/vector.h"
+#include "general/math/math.h"
 
 namespace mia
 {
@@ -13,9 +13,9 @@ namespace mia
 
     public:
         // Public Properties
-        Vector2 position;
+        glm::vec2 position;
         float rotation;
-        Vector2 scale;
+        glm::vec2 scale;
 
     private:
         // Private Properties

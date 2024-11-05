@@ -1,34 +1,33 @@
 #ifndef _MIA_POINT_H
 #define _MIA_POINT_H
 
-#include "general/math/vector.h"
-#include "general/math/matrix.h"
+#include "general/math/math.h"
 
 namespace mia
 {
     class Point
     {
     public:
-        Point(Vector2 position, Vector2 pivot = Vector2::Zero());
+        Point(glm::vec2 position, glm::vec2 pivot = {0.0f, 0.0f});
         Point(float x = 0.0f, float y = 0.0f, float px = 0.0f, float py = 0.0f);
 
         // Attributes
-        Vector2 position;
-        Vector2 pivot;
+        glm::vec2 position;
+        glm::vec2 pivot;
 
         // Public methods
-        Vector2 GetLocalPosition() const;
-        void SetLocalPosition(Vector2 localPos);
-        Matrix3 GetMatrix() const;
+        glm::vec2 GetLocalPosition() const;
+        void SetLocalPosition(glm::vec2 localPos);
+        glm::mat3 GetMatrix() const;
 
         void Translate(float x, float y);
-        void Translate(Vector2 value);
+        void Translate(glm::vec2 value);
         void Scale(float x, float y);
-        void Scale(Vector2 value);
+        void Scale(glm::vec2 value);
         void Rotate(float angle);
 
     private:
-        Matrix3 GetLocalMatrix();
+        glm::mat3 GetLocalMatrix();
     };
 }
 

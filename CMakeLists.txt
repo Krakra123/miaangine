@@ -10,6 +10,7 @@ set(CMAKE_CXX_STANDARD 20)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(GLFW3 REQUIRED)
+find_package(glm REQUIRED)
 
 #########################################
 file(GLOB_RECURSE MIA_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
@@ -20,6 +21,7 @@ add_library(mia STATIC ${MIA_SOURCES})
 target_include_directories(mia PUBLIC ${OpenGL_INCLUDE_DIR})
 target_include_directories(mia PUBLIC ${GLEW_INCLUDE_DIR})
 target_include_directories(mia PUBLIC ${GLFW_INCLUDE_DIR})
+target_include_directories(mia PUBLIC ${GLM_INCLUDE_DIR})
 
 target_include_directories(mia PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -30,6 +32,7 @@ target_include_directories(mia PUBLIC
 target_link_libraries(mia PUBLIC opengl32)
 target_link_libraries(mia PUBLIC GLEW::glew)
 target_link_libraries(mia PUBLIC glfw)
+target_link_libraries(mia PUBLIC glm::glm)
 
 #########################################
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
