@@ -1,13 +1,16 @@
 #include <iostream>
 #include <fstream>
 
-#include "mia.h"
+#include "../miaangine/mia.h"
 
 int main()
 {
     mia::InitWindow(1280, 720);
     mia::InputManager::Init();
 
+    glm::vec2 a(10.0 / 3, 12);
+    glm::vec2 b(10.0 / 3, (6.0 - 4) * 6);
+    printf("%.9f %.9f : %.9f %.9f -> %d", a.x, a.y, b.x, b.y, a == b);
     // mia::Vector2 a = {3.333333, 12};
     // mia::Vector2 b = {10.0 / 3, (6.0 - 4) * 6};
     // printf("%.9f %.9f : %.9f %.9f -> %d", a.x, a.y, b.x, b.y, a == b);
