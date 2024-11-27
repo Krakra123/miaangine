@@ -13,7 +13,7 @@ find_package(GLFW3 REQUIRED)
 find_package(glm REQUIRED)
 
 #########################################
-file(GLOB_RECURSE MIA_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/miaangine/src/*.cpp)
+file(GLOB_RECURSE MIA_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
 add_library(mia STATIC ${MIA_SOURCES})
 
@@ -24,7 +24,7 @@ target_include_directories(mia PUBLIC ${GLFW_INCLUDE_DIR})
 target_include_directories(mia PUBLIC ${GLM_INCLUDE_DIR})
 
 target_include_directories(mia PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/miaangine/src>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
 
 #########################################

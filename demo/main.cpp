@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "../miaangine/mia.h"
+#include "../include/mia.hpp"
 
 int main()
 {
