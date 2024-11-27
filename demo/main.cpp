@@ -2,8 +2,9 @@
 #include <fstream>
 
 #include "../include/mia.hpp"
+#include <SDL2/SDL.h>
 
-int main()
+int main(int argv, char** args)
 {
     mia::InitWindow(1280, 720);
     mia::InputManager::Init();
@@ -53,4 +54,6 @@ int main()
         glfwSwapBuffers(mia::mainWindow);
         glfwPollEvents();
     }
+
+    return 0;
 }
