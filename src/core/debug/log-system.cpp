@@ -1,48 +1,22 @@
 #include "core/debug/log-system.hpp"
 
-#include <cstdio>
-
-// TODO: Re-implement 
-
 namespace mia
 {
-    void LogManager::LogInfo(const char* format, ...)
-    {
-        va_list args;
-        va_start(args, format);
+    void init_logging() {
+        spdlog::set_level(spdlog::level::trace);
 
-        LogWithPrefix("[Info] ", format, args);
+        auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+        console_sink->set_level(spdlog::level::trace);
 
-        va_end(args);
-    }
+        auto file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>("log/main.log", true);
+        file_sink->set_level(spdlog::level::trace);
 
-    void LogManager::LogWarn(const char* format, ...)
-    {
-        va_list args;
-        va_start(args, format);
+        std::shared_ptr<spdlog::logger> logger = std::make_shared<spdlog::logger>("root", spdlog::sinks_init_list({console_sink, file_sink}));
+        logger->set_level(spdlog::level::trace);
 
-        LogWithPrefix("[Warn] ", format, args);
-        
-        va_end(args);
-    }
+        spdlog::register_logger(logger);
+        spdlog::set_default_logger(logger);
 
-    void LogManager::LogError(const char* format, ...)
-    {
-        va_list args;
-        va_start(args, format);
-
-        LogWithPrefix("[Error] ", format, args);
-        
-        va_end(args);
-    }
-
-    void LogManager::LogWithPrefix(const char* prefix, const char* format, va_list& args)
-    {
-        char buffer[256];
-        vsnprintf(buffer, sizeof(buffer), format, args);
-
-        printf(prefix);
-        printf(buffer);
-        printf("\n");
+        spdlog::set_pattern("%^[%l]%$ [%@] %v");
     }
 }

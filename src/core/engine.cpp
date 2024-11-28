@@ -9,11 +9,11 @@ GLFWwindow* mia::mainWindow = nullptr;
 void mia::InitWindow(int w, int h)
 {
     if (!glfwInit()) {
-        LogManager::LogError("Failed to init GLFW");
+        // LogManager::LogError("Failed to init GLFW");
     }
 
     if (w <= 0 || h <= 0) {
-        LogManager::LogError("Window height and width must be positive");
+        // LogManager::LogError("Window height and width must be positive");
         throw std::logic_error("Window height and width must be positive");
     }
 
@@ -27,7 +27,7 @@ void mia::InitWindow(int w, int h)
 	glfwMakeContextCurrent(mainWindow);
 
     if (glewInit() != GLEW_OK) {
-        LogManager::LogError("Failed to init Glew");\
+        // LogManager::LogError("Failed to init Glew");
     }
 }
 

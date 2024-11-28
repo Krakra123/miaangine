@@ -54,7 +54,7 @@ namespace mia
             is = std::ifstream(_assetPath + '/' + path);
 
             if (!is.is_open()) {
-                mia::LogManager::LogError("Undefined path: %s", path.c_str());
+                // mia::LogManager::LogError("Undefined path: %s", path.c_str());
             }
         }
 
@@ -81,7 +81,7 @@ namespace mia
             GLchar* infoLog = new GLchar[length + 1];
             glGetShaderInfoLog(id, length, &length, infoLog);
 
-            mia::LogManager::LogError("Compilation error in shader:\n%s", infoLog);
+            // mia::LogManager::LogError("Compilation error in shader:\n%s", infoLog);
             delete[] infoLog;
         }
 

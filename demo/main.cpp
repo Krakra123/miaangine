@@ -9,6 +9,15 @@ int main(int argv, char** args)
     mia::InitWindow(1280, 720);
     mia::InputManager::Init();
 
+    mia::init_logging();
+
+    MIA_LOG_TRACE("AAA");
+    MIA_LOG_DEBUG("AAA");
+    MIA_LOG_INFO("AAA");
+    MIA_LOG_WARN("AAA");
+    MIA_LOG_ERROR("AAA");
+    MIA_LOG_CRITICAL("AAA");
+
     glm::vec2 a(10.0 / 3, 12);
     glm::vec2 b(10.0 / 3, (6.0 - 4) * 6);
     printf("%.9f %.9f : %.9f %.9f -> %d", a.x, a.y, b.x, b.y, a == b);
