@@ -7,19 +7,16 @@
 
 namespace mia
 {
-    class Entity
+    class entity
     {
     public:
-        // Constructor Destructor
-        Entity(std::type_index type);
-        virtual ~Entity();
+        entity(std::type_index type);
+        virtual ~entity();
 
-        // Public methods
-        bool IsActive() const;
-        virtual void SetActive(bool newState);
+        bool is_active() const;
+        void set_active(bool state);
 
     private:
-        // Data
         std::type_index _type;
         bool _active;
     };

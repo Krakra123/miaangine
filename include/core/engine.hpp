@@ -5,6 +5,8 @@
 
 namespace mia
 {
+    void init_core();
+
     void InitWindow(int w, int h);
 
     void TerminateEngine();

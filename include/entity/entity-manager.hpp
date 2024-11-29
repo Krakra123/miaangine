@@ -6,31 +6,22 @@
 #include <typeindex>
 #include <functional>
 #include <concepts>
+#include <memory>
 
 #include "entity/entity.hpp"
 #include "core/debug/log-system.hpp"
 
 namespace mia
 {
-    class EntityManager
-    {
-    public:
-        // Block constructor
-        EntityManager() = delete;
+    template <std::derived_from<entity> T, std::invocable<T&> F>
+    void iterate_entities(F method);
 
-        // Public method
-        template <std::derived_from<Entity> T, std::invocable<T&> F>
-        static void IterateEntities(F method);
-    
-    #ifdef _MIA__INTERNAL
-        static void RegisterEntity(std::type_index type, Entity* entity);
+#ifdef _MIA__INTERNAL
+    void register_entity(std::type_index type, entity* entity);
+    void unregister_entity(std::type_index type, entity* entity);
 
-        static void UnregisterEntity(std::type_index type, Entity* entity);
-    #endif
-
-        // Data
-        static std::multimap<std::type_index, Entity*> EntitiesMap;
-    };
+    std::multimap<std::type_index, entity*> entities_map;
+#endif
 }
 
 #include "entity-manager.inl"

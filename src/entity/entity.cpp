@@ -6,25 +6,22 @@
 
 namespace mia
 {
-    // Constructor Destructor
-    Entity::Entity(std::type_index type) : _type(type)
+    entity::entity(std::type_index type) :
+        _type(type), _active(true)
     {
-        _active = true;
-
-        EntityManager::RegisterEntity(_type, this);
+        register_entity(_type, this);
     }
-    Entity::~Entity()
+    entity::~entity()
     {
-        EntityManager::UnregisterEntity(_type, this);
+        unregister_entity(_type, this);
     }
 
-    // Public methods
-    bool Entity::IsActive() const
+    bool entity::is_active() const
     {
         return _active;
     }
-    void Entity::SetActive(bool newState)
+    void entity::set_active(bool state)
     {
-        _active = newState;
+        _active = state;
     }
 }

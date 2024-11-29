@@ -5,14 +5,14 @@
 
 namespace mia
 {
-    template <std::derived_from<Entity> T, std::invocable<T&> F>
-    void EntityManager::IterateEntities(F method)
+    template <std::derived_from<entity> T, std::invocable<T&> F>
+    void iterate_entities(F method)
     {
         std::type_index type = std::type_index(typeid(T));
 
-        for (auto it = EntitiesMap.lower_bound(type), end = EntitiesMap.upper_bound(type); it != end; it++) {
-            Entity* entity = it->second;
-            if (!entity->IsActive()) continue;
+        for (auto it = entities_map.lower_bound(type), end = entities_map.upper_bound(type); it != end; it++) {
+            entity* entity = it->second;
+            if (!entity->is_active()) continue;
             std::invoke(method, *dynamic_cast<T*>(entity));
         }
     }

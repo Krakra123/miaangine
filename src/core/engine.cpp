@@ -6,6 +6,14 @@
 
 GLFWwindow* mia::mainWindow = nullptr;
 
+namespace mia 
+{
+    void init_core()
+    {
+        init_logging();
+    }
+}
+
 void mia::InitWindow(int w, int h)
 {
     if (!glfwInit()) {
