@@ -4,12 +4,45 @@
 #include "../include/mia.hpp"
 #include <SDL2/SDL.h>
 
+class A : public mia::entity 
+{
+public:
+    int x;
+    A(int x): mia::entity(std::type_index(typeid(A))), x(x) {}
+
+    virtual void print() 
+    {
+        MIA_LOG_INFO("A: {}", x);
+    }
+};
+
+class B : public mia::entity 
+{
+public:
+    int x;
+    B(int x): mia::entity(std::type_index(typeid(B))), x(x) {}
+
+    virtual void print() 
+    {
+        MIA_LOG_INFO("B: {}", x);
+    }
+};
+
 int main(int argv, char** args)
 {
     mia::InitWindow(1280, 720);
     mia::InputManager::Init();
 
     mia::init_core();
+
+    A aa(1);
+    A ab(2);
+    A ac(3);
+    B ba(1);
+    B bb(2);
+    B bc(3);
+    mia::iterate_entities<A>([](A& t) { t.print(); });
+    mia::iterate_entities<B>([](B& t) { t.print(); });
 
     glm::vec2 a(10.0 / 3, 12);
     glm::vec2 b(10.0 / 3, (6.0 - 4) * 6);

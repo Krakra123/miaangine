@@ -2,6 +2,8 @@
 
 namespace mia
 {
+    std::multimap<std::type_index, entity*> entities_map;
+
     void register_entity(std::type_index type, entity* entity) {
         entities_map.insert(std::make_pair(
             type,

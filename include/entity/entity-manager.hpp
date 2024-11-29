@@ -14,13 +14,13 @@
 namespace mia
 {
     template <std::derived_from<entity> T, std::invocable<T&> F>
-    void iterate_entities(F method);
+    extern void iterate_entities(F method);
 
 #ifdef _MIA__INTERNAL
     void register_entity(std::type_index type, entity* entity);
     void unregister_entity(std::type_index type, entity* entity);
 
-    std::multimap<std::type_index, entity*> entities_map;
+    extern std::multimap<std::type_index, entity*> entities_map;
 #endif
 }
 
