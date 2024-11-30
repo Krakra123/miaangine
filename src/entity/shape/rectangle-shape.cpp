@@ -6,7 +6,7 @@ namespace mia
         width(w), height(h)
     {}
 
-    void RectangleShape::Render(const Transform& transform) 
+    void RectangleShape::Render(const transform& transform) 
     {
         
     }

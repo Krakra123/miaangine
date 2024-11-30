@@ -12,7 +12,7 @@ namespace mia
 
         float width, height;
 
-        void Render(const Transform& transform) override;
+        void Render(const transform& transform) override;
     };
 }
 

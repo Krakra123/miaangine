@@ -11,7 +11,7 @@ namespace mia
     public:
         Color color;
 
-        virtual void Render(const Transform& transform) = 0;
+        virtual void Render(const transform& transform) = 0;
     };
 }
 

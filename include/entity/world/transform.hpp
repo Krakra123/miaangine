@@ -5,25 +5,25 @@
 
 namespace mia
 {
-    class Transform
+    class transform
     {
     public:
-        Transform();
-        ~Transform();
+        transform();
+        virtual ~transform();
 
     public:
-        // Public Properties
         glm::vec2 position;
         float rotation;
         glm::vec2 scale;
 
-    private:
-        // Private Properties
-        // Transform* parent;
-
     public:
-        // Public methods
-        // const Transform& GetParent();
+        glm::vec2 get_forward();
+
+        void translate(glm::vec2 value);
+        void rotate(float value);
+        void stretch(glm::vec2 value);
+
+        void look_at(glm::vec2 target);
     };
 }
 
