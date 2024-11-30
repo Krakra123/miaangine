@@ -2,7 +2,6 @@
 #include <fstream>
 
 #include "../include/mia.hpp"
-#include <SDL2/SDL.h>
 
 class A : public mia::entity 
 {

@@ -14,7 +14,7 @@
 namespace mia
 {
     template <std::derived_from<entity> T, std::invocable<T&> F>
-    extern void iterate_entities(F method);
+    void iterate_entities(F method);
 
 #ifdef _MIA__INTERNAL
     void register_entity(std::type_index type, entity* entity);

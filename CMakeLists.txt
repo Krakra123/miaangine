@@ -15,7 +15,7 @@ find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(GLFW3 REQUIRED)
 find_package(glm REQUIRED)
-find_package(SDL2 REQUIRED)
+# find_package(SDL2 REQUIRED)
 find_package(SPDLOG REQUIRED)
 
 #########################################
@@ -28,7 +28,7 @@ target_include_directories(mia PUBLIC ${OpenGL_INCLUDE_DIR})
 target_include_directories(mia PUBLIC ${GLEW_INCLUDE_DIR})
 target_include_directories(mia PUBLIC ${GLFW_INCLUDE_DIR})
 target_include_directories(mia PUBLIC ${GLM_INCLUDE_DIR})
-target_include_directories(mia PUBLIC ${SDL2_INCLUDE_DIRS})
+# target_include_directories(mia PUBLIC ${SDL2_INCLUDE_DIRS})
 target_include_directories(mia PUBLIC ${SPDLOG_INCLUDE_DIRS})
 
 target_include_directories(mia PUBLIC
@@ -40,7 +40,7 @@ target_link_libraries(mia PUBLIC opengl32)
 target_link_libraries(mia PUBLIC GLEW::glew)
 target_link_libraries(mia PUBLIC glfw)
 target_link_libraries(mia PUBLIC glm::glm)
-target_link_libraries(mia PUBLIC ${SDL2_STATIC_LIBRARIES})
+# target_link_libraries(mia PUBLIC ${SDL2_STATIC_LIBRARIES})
 target_link_libraries(mia PUBLIC ${SPDLOG_LIBRARIES})
 
 #########################################
