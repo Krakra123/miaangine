@@ -5,6 +5,8 @@ project(mia VERSION 0.1)
 
 #########################################
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 #########################################
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/lib/cmake)
@@ -63,3 +65,9 @@ install(TARGETS mia
 
 #########################################
 add_subdirectory(demo)
+
+#########################################
+############### TESTING #################
+#########################################
+enable_testing()
+add_subdirectory(test)
